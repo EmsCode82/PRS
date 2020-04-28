@@ -14,31 +14,33 @@ import com.prsweb.db.ProductRepository;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-@Autowired
-private ProductRepository productRepo;
+	@Autowired
+	private ProductRepository productRepo;
 
-@GetMapping("/")
-public JsonResponse list() {
-	JsonResponse jr = null;
-	List<Product> products = productRepo.findAll();
-	if (products.size() > 0) {
-		jr = JsonResponse.getInstance(products);
-	} else {
-		jr = JsonResponse.getErrorInstance("No product Found.");
+	@GetMapping("/")
+	public JsonResponse list() {
+		JsonResponse jr = null;
+		List<Product> products = productRepo.findAll();
+		if (products.size() > 0) {
+			jr = JsonResponse.getInstance(products);
+		} else {
+			jr = JsonResponse.getErrorInstance("No product Found.");
+		}
+		return jr;
 	}
-	return jr;
-}
-@GetMapping("/{id}")
-public JsonResponse get(@PathVariable int id) {
-	JsonResponse jr = null;
-	Optional<Product> product = productRepo.findById(id);
-	if (product.isPresent()) {
-		jr = JsonResponse.getInstance(product.get());
-	} else {
-		jr = JsonResponse.getErrorInstance("No product found for Id." + id);
+
+	@GetMapping("/{id}")
+	public JsonResponse get(@PathVariable int id) {
+		JsonResponse jr = null;
+		Optional<Product> product = productRepo.findById(id);
+		if (product.isPresent()) {
+			jr = JsonResponse.getInstance(product.get());
+		} else {
+			jr = JsonResponse.getErrorInstance("No product found for Id." + id);
+		}
+		return jr;
 	}
-	return jr;
-}
+
 	@PostMapping("/")
 	public JsonResponse createProduct(@RequestBody Product p) {
 		JsonResponse jr = null;

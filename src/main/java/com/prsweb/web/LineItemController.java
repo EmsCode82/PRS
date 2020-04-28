@@ -55,7 +55,6 @@ public class LineItemController {
 		return jr;
 	}
 
-	
 	@PostMapping("/")
 	public JsonResponse createLineItemRecal(@RequestBody LineItem li) {
 		JsonResponse jr = null;
@@ -88,7 +87,7 @@ public class LineItemController {
 		}
 		return jr;
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public JsonResponse deleteLineItemRecal(@PathVariable int id) {
 		JsonResponse jr = null;
@@ -112,33 +111,19 @@ public class LineItemController {
 		}
 		return jr;
 	}
-	
+
 	private void recalculateLineItemTotal(Request r) {
 		List<LineItem> lineitem = lineItemRepo.findAllByRequestId(r.getId());
 		double total = 0.0;
-		for (LineItem line: lineitem) {
-			total += line.getQuantity()*line.getProduct().getPrice();
+		for (LineItem line : lineitem) {
+			total += line.getQuantity() * line.getProduct().getPrice();
 		}
 		r.setTotal(total);
 		try {
-			System.out.println("recalc saving request:  "+r);
+			System.out.println("recalc saving request:  " + r);
 			requestRepo.save(r);
 		} catch (Exception e) {
 			throw e;
 		}
 	}
-
-//	private void recalculateLineItemTotal(Request request, Double total) {
-//		Optional<Request> id = null;
-//		List<LineItem> liList = lineItemRepo.findAllByRequest(id);
-//		for (LineItem li : liList) {
-//			total += li.getTotal();
-//		}
-//		request.setTotal(total);
-//		try {
-//			requestRepo.save(request);
-//		} catch (Exception e) {
-//			throw e;
-//		}
-//	}
 }

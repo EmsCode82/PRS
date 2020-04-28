@@ -14,31 +14,33 @@ import com.prsweb.db.VendorRepository;
 @RestController
 @RequestMapping("/vendors")
 public class VendorController {
-@Autowired
-private VendorRepository vendorRepo;
+	@Autowired
+	private VendorRepository vendorRepo;
 
-@GetMapping("/")
-public JsonResponse list() {
-	JsonResponse jr = null;
-	List<Vendor> vendors = vendorRepo.findAll();
-	if (vendors.size() > 0) {
-		jr = JsonResponse.getInstance(vendors);
-	} else {
-		jr = JsonResponse.getErrorInstance("No vendor Found.");
+	@GetMapping("/")
+	public JsonResponse list() {
+		JsonResponse jr = null;
+		List<Vendor> vendors = vendorRepo.findAll();
+		if (vendors.size() > 0) {
+			jr = JsonResponse.getInstance(vendors);
+		} else {
+			jr = JsonResponse.getErrorInstance("No vendor Found.");
+		}
+		return jr;
 	}
-	return jr;
-}
-@GetMapping("/{id}")
-public JsonResponse get(@PathVariable int id) {
-	JsonResponse jr = null;
-	Optional<Vendor> vendor = vendorRepo.findById(id);
-	if (vendor.isPresent()) {
-		jr = JsonResponse.getInstance(vendor.get());
-	} else {
-		jr = JsonResponse.getErrorInstance("No vendor found for Id." + id);
+
+	@GetMapping("/{id}")
+	public JsonResponse get(@PathVariable int id) {
+		JsonResponse jr = null;
+		Optional<Vendor> vendor = vendorRepo.findById(id);
+		if (vendor.isPresent()) {
+			jr = JsonResponse.getInstance(vendor.get());
+		} else {
+			jr = JsonResponse.getErrorInstance("No vendor found for Id." + id);
+		}
+		return jr;
 	}
-	return jr;
-}
+
 	@PostMapping("/")
 	public JsonResponse createVendor(@RequestBody Vendor p) {
 		JsonResponse jr = null;

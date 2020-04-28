@@ -45,19 +45,18 @@ public class RequestController {
 	}
 
 	@GetMapping("/list-review/{id}")
-    public JsonResponse listRequestsForReview(@PathVariable int id) {
-        JsonResponse jr = null;
-        Optional<User> user = userRepo.findById(id);
-        List<Request> requests = requestRepo.findAllByStatusAndUserNot("Review",user);
-        if (requests.size()>0 ) {
-            jr = JsonResponse.getInstance(requests);
-        }
-        else {
-            jr = JsonResponse.getErrorInstance("No requests found.");
-        }
+	public JsonResponse listRequestsForReview(@PathVariable int id) {
+		JsonResponse jr = null;
+		Optional<User> user = userRepo.findById(id);
+		List<Request> requests = requestRepo.findAllByStatusAndUserNot("Review", user);
+		if (requests.size() > 0) {
+			jr = JsonResponse.getInstance(requests);
+		} else {
+			jr = JsonResponse.getErrorInstance("No requests found.");
+		}
 
-        return jr;
-    }
+		return jr;
+	}
 
 	@PostMapping("/")
 	public JsonResponse createRequest(@RequestBody Request r) {
@@ -147,12 +146,10 @@ public class RequestController {
 		try {
 			requestRepo.deleteById(id);
 			jr = JsonResponse.getInstance("Request id: " + id + " deleted successfully");
-		} 
-		catch (DataIntegrityViolationException dive) {
+		} catch (DataIntegrityViolationException dive) {
 			jr = JsonResponse.getErrorInstance(dive.getRootCause().getMessage());
 			dive.printStackTrace();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			jr = JsonResponse.getErrorInstance("Error deleting request: " + e.getMessage());
 			e.printStackTrace();
 		}
