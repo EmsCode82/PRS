@@ -94,11 +94,9 @@ public class RequestController {
 		JsonResponse jr = null;
 		try {
 			if (r.getTotal() <= 50) {
-				r.setStatus("Approved");
-				jr = JsonResponse.getInstance("Request Approved");
+				r.setStatus("Approved");				
 			} else {
-				r.setStatus("Review");
-				jr = JsonResponse.getInstance("Request under Review");
+				r.setStatus("Review");				
 			}
 			r.setSubmittedDate(LocalDateTime.now());
 			r = requestRepo.save(r);
@@ -117,7 +115,7 @@ public class RequestController {
 			r.setStatus("Rejected");
 			r.setSubmittedDate(LocalDateTime.now());
 			r = requestRepo.save(r);
-			jr = JsonResponse.getInstance("Request Rejected");
+			jr = JsonResponse.getInstance(r);
 		} catch (Exception e) {
 			jr = JsonResponse.getErrorInstance("Error rejecting request: " + e.getMessage());
 			e.printStackTrace();
@@ -132,7 +130,7 @@ public class RequestController {
 			r.setStatus("Approved");
 			r.setSubmittedDate(LocalDateTime.now());
 			r = requestRepo.save(r);
-			jr = JsonResponse.getInstance("Request Approved");
+			jr = JsonResponse.getInstance(r);
 		} catch (Exception e) {
 			jr = JsonResponse.getErrorInstance("Error approving request: " + e.getMessage());
 			e.printStackTrace();

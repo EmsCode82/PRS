@@ -21,7 +21,7 @@ public class Vendor {
 	}
 
 	public Vendor(int id, String code, String name, String address, String city, String state, int zip,
-			String phonenumber, String email) {
+			String phoneNumber, String email) {
 		super();
 		this.id = id;
 		this.code = code;
@@ -30,7 +30,7 @@ public class Vendor {
 		this.city = city;
 		this.state = state;
 		this.zip = zip;
-		this.phoneNumber = phonenumber;
+		this.phoneNumber = phoneNumber;
 		this.email = email;
 	}
 
@@ -90,12 +90,12 @@ public class Vendor {
 		this.zip = zip;
 	}
 
-	public String getPhonenumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhonenumber(String phonenumber) {
-		this.phoneNumber = phonenumber;
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
@@ -109,7 +109,7 @@ public class Vendor {
 	@Override
 	public String toString() {
 		return "Vendor [id=" + id + ", code=" + code + ", name=" + name + ", address=" + address + ", city=" + city
-				+ ", state=" + state + ", zip=" + zip + ", phonenumber=" + phoneNumber + ", email=" + email + "]";
+				+ ", state=" + state + ", zip=" + zip + ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.prsweb.business;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ public class Request {
 	private User user;
 	private String description;
 	private String justification;
-	private LocalDateTime dateNeeded;
+	private LocalDate dateNeeded;
 	private String deliveryMode;
 	private String status;
 	private double total;
@@ -25,7 +26,7 @@ public class Request {
 		super();
 	}
 
-	public Request(int id, User user, String description, String justification, LocalDateTime dateNeeded,
+	public Request(int id, User user, String description, String justification, LocalDate dateNeeded,
 			String deliveryMode, String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
 		super();
 		this.id = id;
@@ -72,11 +73,11 @@ public class Request {
 		this.justification = justification;
 	}
 
-	public LocalDateTime getDateNeeded() {
+	public LocalDate getDateNeeded() {
 		return dateNeeded;
 	}
 
-	public void setDateNeeded(LocalDateTime dateNeeded) {
+	public void setDateNeeded(LocalDate dateNeeded) {
 		this.dateNeeded = dateNeeded;
 	}
 
@@ -127,4 +128,5 @@ public class Request {
 				+ ", total=" + total + ", submittedDate=" + submittedDate + ", reasonForRejection=" + reasonForRejection
 				+ "]";
 	}
+
 }

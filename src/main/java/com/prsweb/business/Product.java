@@ -10,22 +10,22 @@ public class Product {
 	@ManyToOne
 	@JoinColumn(name = "VendorID")
 	private Vendor vendor;
-	private int partNumber;
-	private String pName;
+	private String partNumber;
+	private String name;
 	private double price;
-	private int unit;
+	private String unit;
 	private String photoPath;
 
 	public Product() {
 		super();
 	}
 
-	public Product(int id, Vendor vendor, int partNumber, String pName, double price, int unit, String photoPath) {
+	public Product(int id, Vendor vendor, String partNumber, String name, double price, String unit, String photoPath) {
 		super();
 		this.id = id;
 		this.vendor = vendor;
 		this.partNumber = partNumber;
-		this.pName = pName;
+		this.name = name;
 		this.price = price;
 		this.unit = unit;
 		this.photoPath = photoPath;
@@ -47,20 +47,20 @@ public class Product {
 		this.vendor = vendor;
 	}
 
-	public int getPartNumber() {
+	public String getPartNumber() {
 		return partNumber;
 	}
 
-	public void setPartNumber(int partNumber) {
+	public void setPartNumber(String partNumber) {
 		this.partNumber = partNumber;
 	}
 
-	public String getpName() {
-		return pName;
+	public String getName() {
+		return name;
 	}
 
-	public void setpName(String pName) {
-		this.pName = pName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public double getPrice() {
@@ -71,11 +71,11 @@ public class Product {
 		this.price = price;
 	}
 
-	public int getUnit() {
+	public String getUnit() {
 		return unit;
 	}
 
-	public void setUnit(int unit) {
+	public void setUnit(String unit) {
 		this.unit = unit;
 	}
 
@@ -89,8 +89,8 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", vendor=" + vendor + ", partNumber=" + partNumber + ", pName=" + pName
-				+ ", price=" + price + ", unit=" + unit + ", photoPath=" + photoPath + "]";
+		return "Product [id=" + id + ", vendor=" + vendor + ", partNumber=" + partNumber + ", name=" + name + ", price="
+				+ price + ", unit=" + unit + ", photoPath=" + photoPath + "]";
 	}
 
 }
